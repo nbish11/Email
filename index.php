@@ -11,7 +11,7 @@ include 'Mimetype.php';
 
 
 // Basic Use:
-/* $email = new Pyro\Email\Email();
+$email = new Pyro\Email\Email();
 
 
 $email->from(['test@domain.com']);
@@ -23,18 +23,18 @@ $email->message('This is a bogus test email.');
 // For archival...
 $composed = $email->compose();
 
-echo '<pre>', $composed, '</pre><hr>'; */
+echo '<pre>', $composed, '</pre><hr>';
 //$email->send();
 
-$attachments = new Pyro\Email\Attachments();
+$attachments = new Pyro\Email\Attachments([
+    'index.php' => 'attachment',
+    'email.php' => 'attachment'
+]);
 
-$attachments->add('index.php', 'attachment');
-$attachments->add('email.php', 'attachment');
-
-var_dump($attachments->all());
+//var_dump($attachments->all());
 //var_dump($attachments->toString());
 
-//echo nl2br($attachments->toString());
+echo nl2br($attachments->toString());
 
 /*
     TODO:

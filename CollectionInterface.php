@@ -25,8 +25,6 @@
  * @author  Nathan Bishop <nbish11@hotmail.com>
  * @link    http://github.com/nbish11/Email
  */
- 
-use Pyro\Email\Collection;
 
 interface CollectionInterface
 {
@@ -34,7 +32,23 @@ interface CollectionInterface
      * 
      * 
      * 
+     * @return void
+     */
+    public function add();
+
+    /**
+     * 
+     * 
+     * 
      * @return string
      */
     public function toString();
+    
+    /**
+     * 
+     * 
+     * 
+     * @return string
+     */
+    public function __toString();
 }

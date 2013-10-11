@@ -37,7 +37,7 @@ class Address
      * Stores the name of the email address if
      * provided
      * 
-     * @var <string> $name
+     * @var string $name
      */
     private $name;
     
@@ -45,17 +45,17 @@ class Address
      * Stores the email address in the format
      * according to the RFC 5322 publication.
      * 
-     * @var <string> $name
+     * @var string $name
      */
     private $email;
 
     /**
      * Validates email address and optional name.
      * 
-     * @param <string> $name
-     * @param <string> $email
+     * @param string $name
+     * @param string $email
      * 
-     * @return <void>
+     * @return void
      */
     public function __construct($name, $email = null)
     {
@@ -80,7 +80,7 @@ class Address
     /**
      * Gets the name.
      * 
-     * @return <string>
+     * @return string
      */
     public function getName()
     {
@@ -90,7 +90,7 @@ class Address
     /**
      * Gets the email address.
      * 
-     * @return <string>
+     * @return string
      */
     public function getEmail()
     {
@@ -101,7 +101,7 @@ class Address
      * Returns the full email address and name
      * in format specified by RFC 5322.
      * 
-     * @return <string>
+     * @return string
      */
     public function toString()
     {
@@ -117,7 +117,7 @@ class Address
     /**
      * Convenience method.
      * 
-     * @return <string>
+     * @return string
      */
     public function __toString()
     {
@@ -128,9 +128,9 @@ class Address
      * Whether the email address conforms to 
      * RFC 5322.
      * 
-     * @param <string> $email
+     * @param string $email
      * 
-     * @return <boolean>
+     * @return boolean
      */
     private function isValidEmail($email)
     {
@@ -140,9 +140,9 @@ class Address
     /**
      * Whether the name conforms to RFC 5322.
      * 
-     * @param <string> $name
+     * @param string $name
      * 
-     * @return <boolean>
+     * @return boolean
      */
     private function isValidName($name)
     {

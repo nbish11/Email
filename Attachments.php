@@ -1,7 +1,7 @@
 <?php namespace Pyro\Email;
 
 /**
- * Pyro\Email\AttachmentsList.php
+ * Pyro\Email\Attachments.php
  *
  * Creates an address list from an array of email objects.
  *
@@ -39,9 +39,9 @@ class Attachments extends Collection implements CollectionInterface
     /**
      * Stores all values in the array into the address list.
      * 
-     * @param <array> $addresses
+     * @param array $addresses
      * 
-     * @return <void>
+     * @return void
      */
     public function __construct(array $attachments = array())
     {
@@ -53,10 +53,10 @@ class Attachments extends Collection implements CollectionInterface
     /**
      * Adds a single email address to the list.
      * 
-     * @param <string> $name 
-     * @param <string> $email  
+     * @param string $name 
+     * @param string $email  
      * 
-     * @return <void>
+     * @return void
      */
     public function add($file, $disposition = 'attachment')
     {
@@ -66,10 +66,9 @@ class Attachments extends Collection implements CollectionInterface
     }
     
     /**
-     * Creates a string of all email addresses in a format defined
-     * by RFC 5322, Section ...
+     * Returns all attachments in the finished format.
      * 
-     * @return <string>
+     * @return string
      */
     public function toString()
     {
@@ -79,7 +78,7 @@ class Attachments extends Collection implements CollectionInterface
     /**
      * Magic toString() method.
      * 
-     * @return <string>
+     * @return string
      */
     public function __toString()
     {

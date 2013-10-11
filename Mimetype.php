@@ -40,10 +40,10 @@ class Mimetype
     /**
      * Find the content type for the given file extension.
      * 
-     * @param <string> $ext 
-     * @param <string> $default  
+     * @param string $ext 
+     * @param string $default  
      * 
-     * @return <string>
+     * @return string
      */
     public static function get($ext, $default = self::DEFAULT_MIMETYPE)
     {

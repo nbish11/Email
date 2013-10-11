@@ -91,7 +91,7 @@ class Attachment
     /**
      * 
      * 
-     * @param <type> $file 
+     * @param string $file 
      * 
      * @return Pyro\Email\Attachment
      */
@@ -109,7 +109,7 @@ class Attachment
     /**
      * 
      * 
-     * @param <type> $encoding 
+     * @param string $encoding 
      * 
      * @return Pyro\Email\Attachment
      */
@@ -123,7 +123,7 @@ class Attachment
     /**
      * 
      * 
-     * @param <type> $disposition 
+     * @param string $disposition 
      * 
      * @return Pyro\Email\Attachment
      */
@@ -187,7 +187,7 @@ class Attachment
      * 
      * 
      * 
-     * @return string|Exception
+     * @return string
      */
     public function getContents()
     {
@@ -292,6 +292,7 @@ class Attachment
     }
     
     /**
+     * Convenience method.
      * 
      * @see Pyro\Email\Attachment::toString()
      * 

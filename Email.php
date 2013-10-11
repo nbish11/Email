@@ -33,6 +33,7 @@ use Exception;
 use Pyro\Email\Address;
 use Pyro\Email\Addresses;
 use Pyro\Email\Attachment;
+use Pyro\Email\Attachments;
  
 class Email
 {
@@ -94,7 +95,7 @@ class Email
         //$this->inReplyTo= null;
         
         $this->contentType = self::DEFAULT_CONTENT_TYPE;
-        $this->attachments = array();
+        $this->attachments = new Attachments();
         $this->recipients  = array();
     }
     
@@ -187,16 +188,16 @@ class Email
         // $this->message = static::format($body);
     }
     
-    public function attach($file, $type = 'disposition')
+    public function attach($file, $disposition = 'attachment')
     {
-        $this->attachments[] = new Attachment($file);
+        $this->attachments->add($file, $disposition);
     }
     
-    public function attachments(array $files)
+    public function attachments(array $files, $disposition = 'attachment')
     {
-        $this->attachments = array_unique(
-            array_merge($this->attachments, $files)
-        );
+        foreach ($files as $file) {
+            $this->attachments->add($file, $disposition);
+        }
     }
     
     public function compose()
