@@ -98,22 +98,12 @@ class Address
     }
     
     /**
-     * Alias to __toString()
-     * 
-     * @return <string>
-     */
-    public function getHeader()
-    {
-        $this->__toString();
-    }
-    
-    /**
      * Returns the full email address and name
      * in format specified by RFC 5322.
      * 
      * @return <string>
      */
-    public function __toString()
+    public function toString()
     {
         $string = '<' . $this->email . '>';
         
@@ -122,6 +112,16 @@ class Address
         }
         
         return $string;
+    }
+    
+    /**
+     * Convenience method.
+     * 
+     * @return <string>
+     */
+    public function __toString()
+    {
+        return $this->toString();
     }
     
     /**

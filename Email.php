@@ -31,7 +31,7 @@
 
 use Exception;
 use Pyro\Email\Address;
-use Pyro\Email\AddressList;
+use Pyro\Email\Addresses;
 use Pyro\Email\Attachment;
  
 class Email
@@ -83,13 +83,14 @@ class Email
     {
         $this->timezone = self::DEFAULT_TIMEZONE;
         
-        $this->from     = new AddressList();
+        //$this->from     = new AddressList();
+        $this->from     = new Addresses();
         //$this->sender   = null;
-        $this->to       = new AddressList();
-        $this->cc       = new AddressList();
-        $this->bcc      = new AddressList();
+        $this->to       = new Addresses();
+        $this->cc       = new Addresses();
+        $this->bcc      = new Addresses();
         //$this->replyTo  = null;
-        $this->replyTo  = new AddressList();
+        $this->replyTo  = new Addresses();
         //$this->inReplyTo= null;
         
         $this->contentType = self::DEFAULT_CONTENT_TYPE;
@@ -110,7 +111,7 @@ class Email
     
     public function from(array $from)
     {
-        $this->from->merge(new AddressList($from));
+        $this->from->merge((new Addresses($from))->all());
     }
     
     public function sender($name, $email = null)
@@ -120,22 +121,22 @@ class Email
     
     public function to(array $to)
     {
-        $this->to->merge(new AddressList($to));
+        $this->to->merge((new Addresses($to))->all());
     }
     
     public function cc(array $cc)
     {
-        $this->cc->merge(new AddressList($cc));
+        $this->cc->merge((new Addresses($cc))->all());
     }
     
     public function bcc(array $bcc)
     {
-        $this->bcc->merge(new AddressList($bcc));
+        $this->bcc->merge((new Addresses($bcc))->all());
     }
     
     public function replyTo(array $replyTo)
     {
-        $this->replyTo->merge(new AddressList($replyTo));
+        $this->replyTo->merge((new Addresses($replyTo))->all());
     }
     
     public function subject($subject)
@@ -162,16 +163,6 @@ class Email
         }
     }
     
-    /* public function message($body)
-    {
-        if (file_exists($body)) {
-            $body = file_get_contents($body);
-        }
-
-        $this->isHtml = $this->hasHtml($body);
-        $this->message = static::format($body);
-    } */
-    
     /**
      * Sets the message body of the email. Can only
      * contain ASCII characters 0-127.
@@ -193,6 +184,7 @@ class Email
 
         $this->isHtml = $this->hasHtml($body);
         $this->message = wordwrap($body, 76, self::CRLF);
+        // $this->message = static::format($body);
     }
     
     public function attach($file, $type = 'disposition')
@@ -252,13 +244,18 @@ class Email
          * DETERMINE RECIPIENTS
          */
          
-        $this->recipients = new AddressList();
+        $this->recipients = new Addresses();
         
-        $this->recipients->merge($this->to);
-        $this->recipients->merge($this->cc);
-        $this->recipients->merge($this->bcc);
+        $this->recipients->merge($this->to->all());
+        $this->recipients->merge($this->cc->all());
+        $this->recipients->merge($this->bcc->all());
     
         return $this->getHeaderString() . self::CRLF . $this->message;
+    }
+    
+    public function send()
+    {
+        var_dump($this);
     }
     
     protected function getHeaderString()

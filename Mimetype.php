@@ -45,7 +45,7 @@ class Mimetype
      * 
      * @return <string>
      */
-    public static function get($ext, $default = SELF::DEFAULT_MIMETYPE)
+    public static function get($ext, $default = self::DEFAULT_MIMETYPE)
     {
         $mimetypes = array(
             '3dm'   => 'x-world/x-3dmf',
