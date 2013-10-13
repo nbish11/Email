@@ -8,13 +8,14 @@ include 'Attachments.php';
 include 'Address.php';
 include 'Addresses.php';
 include 'Mimetype.php';
+include 'RFC.php';
 
 
 // Basic Use:
 $email = new Pyro\Email\Email();
 
 
-$email->from(['test@domain.com']);
+$email->from([/* 'first.last@example.123', */'first.last@iana.org']); //false, true
 $email->to(['random@totally.com']);
 
 $email->subject('Some totally random subject!');
@@ -23,7 +24,7 @@ $email->message('This is a bogus test email.');
 // For archival...
 $composed = $email->compose();
 
-echo '<pre>', $composed, '</pre><hr>';
+//echo '<pre>', $composed, '</pre><hr>';
 //$email->send();
 
 $attachments = new Pyro\Email\Attachments([
@@ -31,10 +32,18 @@ $attachments = new Pyro\Email\Attachments([
     'email.php' => 'attachment'
 ]);
 
+// Twice as long page load
+/* $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+var_dump($time);
+var_dump(round($time, 5)); */
+
 //var_dump($attachments->all());
 //var_dump($attachments->toString());
 
-echo nl2br($attachments->toString());
+//echo nl2br($attachments->toString());
+
+
+//var_dump(RFC::parseEmail('first.last@example.123'));
 
 /*
     TODO:
@@ -49,4 +58,5 @@ echo nl2br($attachments->toString());
     Autoloader function for core files.
     Get a basic send working with PHP's mail() function.
     Create SMTP, MAIL (wrapper for PHP's mail() function), SENDMAIL transport classes.
+    Page load is doubled for basic email class use... Try and optimize time.
 */

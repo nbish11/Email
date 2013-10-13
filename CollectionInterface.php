@@ -34,7 +34,7 @@ interface CollectionInterface
      * 
      * @return void
      */
-    public function add();
+    //public function add();
 
     /**
      * 

@@ -30,6 +30,7 @@
  */
 
 use Exception;
+use RFC;
  
 class Address
 {
@@ -66,7 +67,7 @@ class Address
         }
         
         if ( ! $this->isValidEmail($email)) {
-            throw new Exception('Email address is not in a valid format and/or is not a string!');
+            throw new Exception('The email address "'.$email.'" does not conform to the RFC 5322 addr-spec.');
         }
         
         if ( ! is_null($name) && ! $this->isValidName($name)) {
@@ -134,7 +135,7 @@ class Address
      */
     private function isValidEmail($email)
     {
-        return is_string($email) && !empty($email);
+        return (bool) RFC::parseEmail($email);
     }
     
     /**
@@ -147,5 +148,6 @@ class Address
     private function isValidName($name)
     {
         return is_string($name) && !empty($name);
+        // return (bool) RFC::parseName($name);
     }
 }
