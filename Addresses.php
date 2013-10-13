@@ -1,16 +1,16 @@
 <?php namespace Pyro\Email;
 
 /**
- * Pyro\Email\Addresses.php
+ * Stores an array of email addresses.
  *
- * Creates an address list from an array of email objects.
- *
- * Copyright (c) 2013 Nathan Bishop <nbish11@hotmail.com>
+ * PHP version 5
  * 
- * LICENSE: This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * Copyright (C) 2013  Nathan Bishop
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -18,23 +18,23 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, please visit 
- * <http://www.gnu.org/licenses/gpl-2.0.html>.
- * 
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package Pyro\Email
- * @version 0.0.1
- * @author  Nathan Bishop <nbish11@hotmail.com>
- * @link    http://github.com/nbish11/Email
- * @todo    Add the ability to change email validation level.
+ * @package    Pyro\Email
+ * @author     Nathan Bishop <nbish11@hotmail.com>
+ * @version    0.0.1
+ * @copyright  2013 Nathan Bishop
+ * @license    GPLv2
+ * @link       https://github.com/nbish11/Email
+ *
+ * $Id$
  */
 
 use Exception;
 use Pyro\Email\Address;
 use Pyro\Email\Collection;
-use Pyro\Email\CollectionInterface;
  
-class Addresses extends Collection implements CollectionInterface
+class Addresses extends Collection
 {
     /**
      * Stores all values in the array into the address list.

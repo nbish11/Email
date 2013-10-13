@@ -5,7 +5,7 @@
  *
  * PHP version 5
  * 
- * Copyright (C) 2003-2013  Cal Henderson
+ * Copyright (C) 2008-2013  Cal Henderson
  *
  * LICENSE: This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  * @author     Cal Henderson <cal@iamcal.com>
  * @author     Nathan Bishop <nbish11@hotmail.com>
  * @version    0.0.1
- * @copyright  (c) 2013 Cal Henderson
+ * @copyright  2008-2013 Cal Henderson
  * @license    GPLv3
  * @license    CC BY-SA 2.5
  * @link       http://code.iamcal.com/php/rfc822/
