@@ -78,16 +78,4 @@ class Addresses extends Collection
     {
         return implode(', ', array_values($this->data));
     }
-    
-    /**
-     * Convenience method.
-     * 
-     * @see Pyro\Email\Addresses::toString()
-     * 
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->toString();
-    }
 }

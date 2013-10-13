@@ -74,14 +74,4 @@ class Attachments extends Collection
     {
         return implode("\r\n", array_values($this->all()));
     }
-    
-    /**
-     * Magic toString() method.
-     * 
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->toString();
-    }
 }

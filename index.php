@@ -1,12 +1,16 @@
 <?php error_reporting(-1);
 
-include 'Email.php';
+// Collections
 include 'Collection.php';
-include 'CollectionInterface.php';
-include 'Attachment.php';
-include 'Attachments.php';
-include 'Address.php';
 include 'Addresses.php';
+include 'Attachments.php';
+
+// Objects
+include 'Email.php';
+include 'Attachment.php';
+include 'Address.php';
+
+// Helpers
 include 'Mimetype.php';
 include 'RFC.php';
 
@@ -15,7 +19,7 @@ include 'RFC.php';
 $email = new Pyro\Email\Email();
 
 
-$email->from([/* 'first.last@example.123', */'first.last@iana.org']); //false, true
+$email->from([/* 'first.last@example.123', */'first.last@iana.org']);   // false, true
 $email->to(['random@totally.com']);
 
 $email->subject('Some totally random subject!');
@@ -24,26 +28,9 @@ $email->message('This is a bogus test email.');
 // For archival...
 $composed = $email->compose();
 
-//echo '<pre>', $composed, '</pre><hr>';
+var_dump($composed);
 //$email->send();
 
-$attachments = new Pyro\Email\Attachments([
-    'index.php' => 'attachment',
-    'email.php' => 'attachment'
-]);
-
-// Twice as long page load
-/* $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
-var_dump($time);
-var_dump(round($time, 5)); */
-
-//var_dump($attachments->all());
-//var_dump($attachments->toString());
-
-//echo nl2br($attachments->toString());
-
-
-//var_dump(RFC::parseEmail('first.last@example.123'));
 
 /*
     TODO:

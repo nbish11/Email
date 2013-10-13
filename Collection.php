@@ -35,7 +35,7 @@ use ArrayAccess;
 use Countable;
 use ArrayIterator;
 
-class Collection implements IteratorAggregate, ArrayAccess, Countable
+abstract class Collection implements IteratorAggregate, ArrayAccess, Countable
 {
     /**
      * Collection of objects.
@@ -227,64 +227,16 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
     }
     
     /**
-     * Returns the current element in the collection.
+     * Arbitrarily returns the extending collection as a header
+     * string.
      * 
-     * @see Iterator::current()
+     * @see Pyro\Email\Collection::toString()
      * 
-     * @return mixed
+     * @return string
      */
-    public function current()
+    public function __toString()
     {
-        return current($this->data);
-    }
-    
-    /**
-     * Returns the key of the current element in the collection.
-     * 
-     * @see Iterator::key()
-     * 
-     * @return scalar
-     */
-    public function key()
-    {
-        return key($this->data);
-    }
-    
-    /**
-     * Moves the current position to the next object in the collection.
-     * 
-     * @see Iterator::next()
-     * 
-     * @return void
-     */
-    public function next()
-    {
-        next($this->data);
-    }
-    
-    /**
-     * Goes back to the first object in the collection. 
-     * 
-     * @see Iterator::rewind()
-     * 
-     * @return void
-     */
-    public function rewind()
-    {
-        reset($this->data);
-    }
-    
-    /**
-     * Checks if the current position in the collection is valid.
-     * 
-     * @see Iterator::valid()
-     * 
-     * @return boolean
-     */
-    public function valid()
-    {
-        // return key($this->data) !== null;
-        return ! is_null(key($this->data));
+        return $this->toString();
     }
     
     /**
@@ -371,4 +323,11 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
     {
         return count($this->data);
     }
+    
+    /**
+     * Converts the collection's data into a string.
+     * 
+     * @return string
+     */
+    abstract public function toString();
 }

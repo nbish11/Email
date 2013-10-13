@@ -81,7 +81,7 @@ class Email
     public $recipients;
     public $timezone;
 
-    public function __construct()
+    public function __construct(array $options = array())
     {
         $this->timezone = self::DEFAULT_TIMEZONE;
         
