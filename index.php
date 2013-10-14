@@ -19,7 +19,23 @@ include 'RFC.php';
 $email = new Pyro\Email\Email();
 
 
-$email->from([/* 'first.last@example.123', */'first.last@iana.org']);   // false, true
+//$email->from([/* 'first.last@example.123', */'first.last@iana.org']);   // false, true
+//$email->from([/* 'first.last@example.123', */'first.last@iana.org']);   // false, true
+//$email->from([/* 'first.last@example.123', */'first.last@iana.org']);   // false, true
+
+/* $email->from([
+    'Hello World' => 'helloworld@program.com',
+    'first.last@iana.org'
+]);
+$email->from([
+    'Firstname Lastname' => 'fnln@domain.com',
+    'Testing' => 'testdomain@testing.com'
+]);
+$email->from(['first.last@domain.com', 'username@domain.com']);
+$email->from('k91968@hotmail.com'); */
+$email->from('Nathan Bishop', 'nbish11@hotmail.com');
+
+
 $email->to(['random@totally.com']);
 
 $email->subject('Some totally random subject!');

@@ -513,6 +513,5 @@ class Mimetype
         );
         
         return isset($mimetypes[$ext]) ? $mimetypes[$ext] : $default;
-        //return array_key_exists($ext, $mimetypes) ? $mimetypes[$ext] : $default;
     }
 }

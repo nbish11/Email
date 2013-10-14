@@ -30,37 +30,38 @@
  * $Id$
  */
 
-use Exception;
 use Pyro\Email\Attachment;
 use Pyro\Email\Collection;
  
 class Attachments extends Collection
 {
     /**
-     * Stores all values in the array into the address list.
+     * Adds an array of files to the attachments collection.
      * 
-     * @param array $addresses
+     * @param array $attachments
      * 
      * @return void
      */
     public function __construct(array $attachments = array())
     {
-        foreach ($attachments as $file => $disposition) {
-            $this->add($file, $disposition);
+        foreach ($attachments as $file) {
+            $this->add($file);
         }
     }
     
     /**
-     * Adds a single email address to the list.
+     * Adds a single file to the attachments collection.
+     * 
+     * @see Pyro\Email\Collection::set()
      * 
      * @param string $name 
-     * @param string $email  
+     * @param string $email
      * 
      * @return void
      */
-    public function add($file, $disposition = 'attachment')
+    public function add($file)
     {
-        $attachment = new Attachment($file, $disposition);
+        $attachment = new Attachment($file, 'attachment');
         
         parent::set($attachment->getFileName(), $attachment);
     }
@@ -68,10 +69,12 @@ class Attachments extends Collection
     /**
      * Returns all attachments in the finished format.
      * 
+     * @see Pyro\Email\Collection::toString()
+     * 
      * @return string
      */
     public function toString()
     {
-        return implode("\r\n", array_values($this->all()));
+        return implode("\r\n", array_values(parent::all()));
     }
 }

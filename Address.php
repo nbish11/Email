@@ -54,29 +54,50 @@ class Address
     /**
      * Validates email address and optional name.
      * 
-     * @param string $name
      * @param string $email
+     * @param string $name
      * 
      * @return void
      */
-    public function __construct($name, $email = null)
+    public function __construct($email, $name = null)
     {
-        // IF only 1 argument than argument 1 is email address.
-        if (is_null($email)) {
-            $email = $name;
-            $name = null;
-        }
+        $this->setEmail($email);
         
-        if ( ! $this->isValidEmail($email)) {
+        if ( ! is_null($name)) {
+            $this->setName($name);
+        }
+    }
+    
+    /**
+     * Validates and sets the email address.
+     * 
+     * @param string $email 
+     * 
+     * @return void
+     */
+    public function setEmail($email)
+    {
+        if (RFC::parseEmail($email) == 0) {
             throw new Exception('The email address "'.$email.'" does not conform to the RFC 5322 addr-spec.');
         }
         
-        if ( ! is_null($name) && ! $this->isValidName($name)) {
-            throw new Exception('Name is not in a valid format and/or is empty!');
+        $this->email = $email;
+    }
+    
+    /**
+     * Validates and sets the name for the email address.
+     * 
+     * @param string $name 
+     * 
+     * @return void
+     */
+    public function setName($name)
+    {
+        if (is_string($name) && !empty($name)) {
+            
         }
         
-        $this->name  = $name;
-        $this->email = $email;
+        $this->name = $name;
     }
     
     /**
@@ -124,31 +145,5 @@ class Address
     public function __toString()
     {
         return $this->toString();
-    }
-    
-    /**
-     * Whether the email address conforms to 
-     * RFC 5322.
-     * 
-     * @param string $email
-     * 
-     * @return boolean
-     */
-    private function isValidEmail($email)
-    {
-        return (bool) RFC::parseEmail($email);
-    }
-    
-    /**
-     * Whether the name conforms to RFC 5322.
-     * 
-     * @param string $name
-     * 
-     * @return boolean
-     */
-    private function isValidName($name)
-    {
-        return is_string($name) && !empty($name);
-        // return (bool) RFC::parseName($name);
     }
 }

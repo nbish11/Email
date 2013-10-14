@@ -33,7 +33,6 @@
 use Exception;
 use Pyro\Email\Address;
 use Pyro\Email\Addresses;
-use Pyro\Email\Attachment;
 use Pyro\Email\Attachments;
  
 class Email
@@ -85,15 +84,12 @@ class Email
     {
         $this->timezone = self::DEFAULT_TIMEZONE;
         
-        //$this->from     = new AddressList();
         $this->from     = new Addresses();
-        //$this->sender   = null;
         $this->to       = new Addresses();
         $this->cc       = new Addresses();
         $this->bcc      = new Addresses();
-        //$this->replyTo  = null;
         $this->replyTo  = new Addresses();
-        //$this->inReplyTo= null;
+        //$this->inReplyTo = null;
         
         $this->contentType = self::DEFAULT_CONTENT_TYPE;
         $this->attachments = new Attachments();
@@ -111,9 +107,19 @@ class Email
         $this->headers['X-Priority'] = $priority; */
     }
     
-    public function from(array $from)
+    public function from($email, $name = null)
     {
-        $this->from->merge((new Addresses($from))->all());
+        if (is_string($email) && !is_null($name)) {
+            $this->from->add($email, $name);
+        }
+    
+        /* if (is_array($email)) {
+            $this->from->merge((new Addresses($email))->all());
+        } elseif (is_string($email) && !is_null($name)) {
+            $this->from->add($name, $email);
+        } else {
+            $this->from->add($email);
+        } */
     }
     
     public function sender($name, $email = null)

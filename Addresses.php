@@ -30,14 +30,14 @@
  * $Id$
  */
 
-use Exception;
 use Pyro\Email\Address;
 use Pyro\Email\Collection;
  
 class Addresses extends Collection
 {
     /**
-     * Stores all values in the array into the address list.
+     * Adds an array of email addresses and their optional
+     * names to the addresses collection.
      * 
      * @param array $addresses
      * 
@@ -51,7 +51,9 @@ class Addresses extends Collection
     }
     
     /**
-     * Adds a single email address to the list.
+     * Adds a single email address and optional name to the collection.
+     * 
+     * @see Pyro\Email\Collection::set()
      * 
      * @param string $name 
      * @param string $email  
@@ -63,8 +65,8 @@ class Addresses extends Collection
         $email = new Address($name, $email);
         
         // When searching/manipulating addresses we want to do this
-        // by using case-insensitive emails (but storing should 
-        // the email should be case-sensitive).
+        // by using case-insensitive emails (but storing the email
+        // should be case-sensitive).
         parent::set(strtolower($email->getEmail()), $email);
     }
     
@@ -72,10 +74,12 @@ class Addresses extends Collection
      * Creates a string of all email addresses in a format defined
      * by RFC 5322, Section ...
      * 
+     * @see Pyro\Email\Collection::toString()
+     * 
      * @return string
      */
     public function toString()
     {
-        return implode(', ', array_values($this->data));
+        return implode(', ', array_values(parent::all()));
     }
 }
